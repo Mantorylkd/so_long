@@ -9,9 +9,9 @@ int main(int argc, char **argv)
     if (!parse_map(argv[1], &game))
     return (1); // Map parsing failed
     
-    init_game(&game);
-    mlx_loop(game.mlx);
-    return (0);
+    // init_game(&game);
+    // mlx_loop(game.mlx);
+    // return (0);
 }
 
 

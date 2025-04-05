@@ -1,7 +1,7 @@
 #include "so_long.h"
 
 
-int is_rectangular(char **map)
+int     is_rectangular(char **map)
 {
     int i = 1;
     int first_line = strlen(map[0]);
@@ -16,7 +16,7 @@ int is_rectangular(char **map)
 } 
 
 
-int is_closed_by_walls(char **map) 
+int     closed_by_walls(char **map) 
 {
     int i;
     int last_row;
@@ -42,3 +42,35 @@ int is_closed_by_walls(char **map)
     return (1);
 }
 
+
+int     valid_cmpnts(t_list  **map)
+{
+    int p = 0;
+    int c = 0;
+    int e = 0;
+    int y = 0;
+    int x = 0;
+
+    while(map[y])
+    {   
+        while (map[y][x])
+        {
+            if(map[y][x] == 'P')
+                p++;
+            else if(map[y][x] == 'E')
+                e++;
+            else if(map[y][x] == 'C')
+                c++;
+            else if(map[y][x] != '0' && map[y][x] != '1')
+                write(2,"invalid characters",18);
+            x++;
+        }
+        y++;
+    }
+    if (c < 1 || p != 1 || e != 1)
+        {
+            write(2,"invalid number of characters",28);
+            return 0;
+        }
+    return 1;
+}
