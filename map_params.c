@@ -1,21 +1,5 @@
 #include "so_long.h"
 
-
-int     is_rectangular(char **map)
-{
-    int i = 1;
-    int first_line = strlen(map[0]);
-
-    while(map[i])
-    {
-        if(strlen(map[i]) != first_line )
-            return 0;
-        i++
-    }
-    return 1;
-} 
-
-
 int     closed_by_walls(char **map) 
 {
     int i;

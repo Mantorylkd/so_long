@@ -1,33 +1,32 @@
 #include "so_long.h"
 
 
-int main(int argc, char **argv) 
-{
+int main(int argc, char **argv) {
+    t_game game;
+
     if (argc != 2)
-    return (ft_printf("Error: Usage: ./so_long <map.ber>\n"), 1);
-    
-    if (!parse_map(argv[1], &game))
-    return (1);
-    
-    init_game(&game);
-    mlx_loop(game.mlx);
+        error_hit()
+    if(!parse_map(argv[1], &game))
+        return (1);
+
+    if (!has_valid_path(&game)) 
+    {
+        free_map(game.map, game.map_height);
+        return (error("No valid path to collectibles/exit"));
+    }
+
+    init_graphics(&game);
+    game_loop(&game);
+    free_resources(&game);
     return (0);
 }
 
 
-
-int validate_map(t_game *game) {
-    if (!is_rectangular(game->map))
-        return (error("Map is not rectangular"), 0);
-    if (!is_closed_by_walls(game->map))
-        return (error("Map not surrounded by walls"), 0);
-    if (!has_valid_components(game->map))
-        return (error("Invalid map components"), 0);
-    if (!has_valid_valid_path(game))
-        return (error("No valid path to exit/collectibles"), 0);
-    return (1);
+int error_hit(char *msg) 
+{
+        write(2,"Error",5);
+        return (0);
 }
-
 
 
 int has_valid_path(t_game *game) 
