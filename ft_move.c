@@ -23,22 +23,22 @@ int ft_collect(char **map)
 
 int ft_exit_hanle(t_game *game, int newx, int newy)
 {
+    if (game->map[newx][newy] == 'E' && !ft_collect(game->map))
+    {
+            succed_exit(game);
+    }
     if (game->exit_x == game->player_x && game->exit_y == game->player_y)
     {
-        if (!ft_collect(game->map))
-        {
-            succed_exit(game);
-        }
             
         game->map[game->exit_x][game->exit_y] = 'E';
-        game->map[newx][newy] = '0';
+        game->map[newx][newy] = 'P';
         game->player_x = newx;
         game->player_y = newy;
         game->exit_x = 0;
         game->exit_y = 0;
         return (1);
     }
-    else if (game->map[game->player_x - 1][game->player_y] == 'E')
+    else if (game->map[newx][newy] == 'E')
     {
         game->exit_x = newx;
         game->exit_y = newy;

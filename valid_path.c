@@ -29,8 +29,8 @@ int has_valid_path(t_game *game)
     int p_x, p_y;
 
     find_player(visited, &p_x, &p_y);
-    game->player_x = p_x;
-    game->player_y = p_y;
+    game->player_x = p_y;
+    game->player_y = p_x;
 
 
     flood_fill(visited, p_x, p_y);
