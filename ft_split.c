@@ -6,7 +6,7 @@
 /*   By: ekhallaf <ekhallaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:42:20 by ekhallaf          #+#    #+#             */
-/*   Updated: 2025/04/14 02:37:26 by ekhallaf         ###   ########.fr       */
+/*   Updated: 2025/04/14 19:22:42 by ekhallaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,18 +103,4 @@ char	**ft_split(char const *s, char c)
 	return (split);
 }
 
-// int	main(void)
-// {
-// 	int		i;
-// 	char	str[] = "hhuhjhb hkb jkjb ";
-// 	char	**res;
 
-// 	i = 0;
-// 	res = ft_split(str, ' ');
-// 	while (res[i])
-// 	{
-// 		printf("'%s'\n", res[i]);
-// 		i++;
-// 	}
-// 	printf("'%s'\n", res[3]);
-// }

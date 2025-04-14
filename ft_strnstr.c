@@ -6,7 +6,7 @@
 /*   By: ekhallaf <ekhallaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:06:16 by ekhallaf          #+#    #+#             */
-/*   Updated: 2025/04/14 02:30:09 by ekhallaf         ###   ########.fr       */
+/*   Updated: 2025/04/14 19:22:47 by ekhallaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-// int	main(void)
-// {
-// 	// char big[] = "";
-// 	// char little[] = "";
-// 	printf("%s", ft_strnstr(((void*)0), "fake", 0));
-// }

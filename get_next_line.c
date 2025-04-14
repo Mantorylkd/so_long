@@ -6,7 +6,7 @@
 /*   By: ekhallaf <ekhallaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:48:24 by ekhallaf          #+#    #+#             */
-/*   Updated: 2024/12/13 00:08:53 by ekhallaf         ###   ########.fr       */
+/*   Updated: 2025/04/14 19:23:01 by ekhallaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,32 +97,3 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*line;
-
-// 	fd = open("text.txt", O_RDONLY);
-// 	if (fd == -1)
-// 	{
-// 		perror("Error opening file");
-// 		return (1);
-// 	}
-// 	line = get_next_line(fd);
-// 	printf("%s", line);
-// 	free(line);
-// 	line = get_next_line(fd);
-// 	printf("%s", line);
-// 	free(line);
-// 	line = get_next_line(fd);
-// 	printf("%s", line);
-// 	free(line);
-// 	line = get_next_line(fd);
-// 	printf("%s", line);
-// 	free(line);
-// 	line = get_next_line(fd);
-// 	printf("%s", line);
-// 	free(line);
-// 	close(fd);
-// 	return (0);
-// }

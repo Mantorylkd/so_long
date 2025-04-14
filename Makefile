@@ -1,10 +1,10 @@
 NAME = so_long
 
-SRCS = main.c  map_params.c ft_putstr_fd.c get_next_line.c get_next_line_utils.c  parcing_map.c  test.c ft_split.c  valid_path.c
+SRCS = main.c  map_params.c ft_putstr_fd.c ft_move.c ft_memset.c get_next_line.c get_next_line_utils.c ft_putimage.c  parcing_map.c  test.c ft_split.c  valid_path.c ft_strnstr.c
 
 OBJS = $(SRCS:.c=.o)
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
