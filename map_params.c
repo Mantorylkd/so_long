@@ -12,7 +12,7 @@ int     closed_by_walls(char **map)
     last_col = ft_strlen(map[0]) - 1;
     
     i = 0;
-    while (i < ft_strlen(map[0])) {
+    while (i < (int)ft_strlen(map[0])) {
         if (map[0][i] != '1' || map[last_row - 1][i] != '1')
             return (0);
         i++;
@@ -26,8 +26,7 @@ int     closed_by_walls(char **map)
     return (1);
 }
 
-
-int     valid_cmpnts(t_list  **map)
+int     valid_cmpnts(t_game  *map)
 {
     int p = 0;
     int c = 0;
@@ -35,17 +34,17 @@ int     valid_cmpnts(t_list  **map)
     int y = 0;
     int x = 0;
 
-    while(map[y])
+    while(map->map[y])
     {   
-        while (map[y][x])
+        while (map->map[y][x])
         {
-            if(map[y][x] == 'P')
+            if(map->map[y][x] == 'P')
                 p++;
-            else if(map[y][x] == 'E')
+            else if(map->map[y][x] == 'E')
                 e++;
-            else if(map[y][x] == 'C')
+            else if(map->map[y][x] == 'C')
                 c++;
-            else if(map[y][x] != '0' && map[y][x] != '1')
+            else if(map->map[y][x] != '0' && map->map[y][x] != '1')
                 write(2,"invalid characters",18);
             x++;
         }

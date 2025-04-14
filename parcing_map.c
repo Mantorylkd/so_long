@@ -1,71 +1,65 @@
 #include "so_long.h"
 
-int parse_map(char *file, t_game *game) 
+void ft_error(char *str, char *mess, int fd)
 {
-    int fd = open(file, O_RDONLY);
-    if (fd == -1)
-        return (error("Failed to open map"), 0);
-    
-    char *line;
-    game->map_height = 0;
-    game->map_width = -1; 
-    
-    while ((line = get_next_line(fd))) 
-    {
-        int line_len = (int)ft_strlen(line);
-        if (line[line_len - 1] == '\n')
-            line_len--; 
-        
-        if (game->map_width == -1) 
-            game->map_width = line_len;
-        else if (line_len != game->map_width) 
-        {
-            free(line);
-            close(fd);
-            return (error("Map is not rectangular"), 0);
-        }
-        game->map_height++;
-        free(line);
-    }
-    close(fd);
-    fd = open(file, O_RDONLY);
-    if (!read_map(fd, game))
-    {
-        close(fd);
-        return (0);
-    }
-    close(fd);
-    return (1);
+    free(str);
+    write(2, "ERROR\n", ft_strlen("ERROR\n"));
+    ft_putstr_fd(mess, fd);
+    if (fd < 0)
+        close (fd);
+    exit(1);
 }
 
-int read_map(int fd, t_game *game) 
+int ft_readmap(int fd) 
 {
-    char    *line;
-    char    *temp_map = NULL;
-    char    *temp_line;
-    
-    while (1) {
-        line = get_next_line(fd);
-        if (!line)
-            break;
-        temp_line = ft_strjoin(temp_map, line);
-        free(temp_map);
-        free(line);
-        temp_map = temp_line;
+    char    *cont;
+    char    *tmp;
+    int     i;
+
+    tmp = ft_strdup(" ");
+    if (!tmp)
+        ft_error(NULL, "faild allocation", fd);
+    cont = ft_strdup("");
+    if (!cont)
+        ft_error(tmp, "faild allocation", fd);
+    while (1)
+    {
+        i = read(fd, tmp, 1);
+        if (i == 0)
+            break ;
+        if (i < 0)
+            return (free(tmp), ft_error(tmp, "faild allocation", fd), 0);
+        cont = ft_strjoin(cont, tmp);
+        if (!cont)
+            return (free(tmp), ft_error(tmp, "faild allocation", fd), 0);    
     }
-    game->map = ft_split(temp_line, '\n');
-    free(temp_map);
-    return (game->map != NULL);
+    free(tmp);
+    close(fd);
+    return (cont);
 }
 
-
-
-int validate_map(t_game *game)
+int parse_map(t_game *game, int fd)
 {
-    if(!is_valid_cmpnts(game->map))
-        error_hit();
+    char *str;
+    char **map;
+
+    str = ft_readmap(fd);
+    if (ft_strnstr(str, "\n\n", ft_strlen(str)))
+        ft_error(str, "a new line in your map \n", -1);
+    game->map = ft_split(str, '\n');
+    free(str);
+    if (!(game->map))
+        error_hit("faild allocation \n");
+    validate_map(game);
+    if (!has_valid_path(game))
+        ft_error(ft_free(game->map), "invalid map\n", -1);
+} 
+
+
+void validate_map(t_game *game)
+{
     if(!closed_by_walls(game->map))
-        error_hit();
+        error_hit("your map doesnt surround with walls");
+    if(!valid_cmpnts(game))
+        error_hit("you need 0 1 P C E");
 }
-
-

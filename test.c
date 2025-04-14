@@ -17,7 +17,7 @@ void init_graphics(t_game *game)
 
     render_map(game);
 }
-
+      
 
 void load_textures(t_game *game) 
 {
@@ -65,7 +65,7 @@ void render_map(t_game *game)
             else
                 img = game->floor_img;
 
-            mlx_put_image_to_window(game->mlx,game->win,img, x * TILE_SIZE, y * TILE_SIZE);
+            mlx_put_image_to_window(game->mlx,game->win, img, x * TILE_SIZE, y * TILE_SIZE);
             x++; 
         }
         y++;

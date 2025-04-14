@@ -5,17 +5,15 @@ int has_valid_path(t_game *game)
     char **visited = copy_map(game->map);
     if (!visited)
         return 0;
-
     int p_x, p_y;
     find_player(visited, &p_x, &p_y);
-
+    printf("yeap\n");
     flood_fill(visited, p_x, p_y, game->map_height, game->map_width);
-
+    printf("yeap\n");
     // int valid = check_reachable(visited, 'C') && check_reachable(visited, 'E');
     free_map(visited, game->map_height);
-    return valid;
+    return 1;
 }
-
 
 char **copy_map(char **map) 
 {
@@ -29,7 +27,7 @@ char **copy_map(char **map)
         return (NULL);
     i = 0;
     i = 0;
-    while (map[i++])
+    while (map[i])
     {
         copy[i] = ft_strdup(map[i]);
         if (!copy[i]) 
