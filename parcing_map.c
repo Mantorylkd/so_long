@@ -2,10 +2,11 @@
 
 void ft_error(char *str, char *mess, int fd)
 {
-    free(str);
+    if(str)
+        free(str);
     write(2, "ERROR\n", ft_strlen("ERROR\n"));
     ft_putstr_fd(mess, 2);
-    if (fd > 0)
+    if (fd >= 0)
         close (fd);
     exit(1);
 }
@@ -18,20 +19,22 @@ char *ft_readmap(int fd)
 
     tmp = ft_strdup(" ");
     if (!tmp)
-        ft_error(NULL, "faild allocation", fd);
+        ft_error(NULL, "allocation failed", fd);
     cont = ft_strdup("");
     if (!cont)
-        ft_error(tmp, "faild allocation", fd);
+        ft_error(tmp, "allocation failed", fd);
     while (1)
     {
         i = read(fd, tmp, 1);
         if (i == 0)
-            break ;
+            break;
+        if (*tmp == '\n' && *cont == '\0')
+            return (free(tmp), ft_error(cont, "they are an empty line in your map", fd), NULL);
         if (i < 0)
-            return (free(tmp), ft_error(tmp, "faild allocation", fd), NULL);
+            return (free(tmp), ft_error(cont, "read faild", fd), NULL);
         cont = ft_strjoin(cont, tmp);
         if (!cont)
-            return (free(tmp), ft_error(tmp, "faild allocation", fd), NULL);    
+            ft_error(tmp, "faild allocation", fd);
     }
     free(tmp);
     close(fd);
@@ -43,20 +46,17 @@ int parse_map(t_game *game, int fd)
     char *str;
 
     str = ft_readmap(fd);
-
     if (ft_strnstr(str, "\n\n", ft_strlen(str)))
         ft_error(str, "a new line in your map \n", -1);
-
     game->map = ft_split(str, '\n');
     free(str);
     if (!(game->map))
         error_hit("faild allocation \n");
-
+    if (!(*game->map))
+        ft_error(ft_free(game->map), "empty map\n", -1); 
     validate_map(game);
-
     if (!has_valid_path(game))
         ft_error(ft_free(game->map), "invalid map\n", -1);
-
     return (1);
 } 
 
@@ -67,6 +67,7 @@ int is_rectangular(char **map)
     int i;
 
     i = 0;
+
     len = (int)ft_strlen(map[i++]);
     while (map[i])
     {

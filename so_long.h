@@ -2,6 +2,7 @@
 # define SO_LONG_H
 
 #include "get_next_line.h"
+#include "printf.h"
 # include <X11/keysym.h>
 #include "/usr/include/minilibx-linux/mlx.h"
 #include "/usr/include/minilibx-linux/mlx_int.h"
@@ -19,6 +20,9 @@ typedef struct s_game {
     int     player_x;
     int     player_y;
     int     collectibles;
+
+    // moves
+    int     move;
 
     // position of exit
     int exit_y;

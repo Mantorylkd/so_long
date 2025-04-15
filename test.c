@@ -39,42 +39,40 @@ int ft_len(char **map)
     return (i);
 }
 
-void ft_str(char **str)
-{
-    int i;
+// void ft_str(char **str)
+// {
+//     int i;
 
-    i = 0;
-    printf("%s\n", str[i++]);
-    //while(str[i])
-    printf("hello\n");
-}
+//     i = 0;
+//     printf("%s\n", str[i++]);
+//     //while(str[i])
+//     printf("hello\n");
+// }
 
 void init_graphics(t_game *game) 
 {
-    printf("hello\n");
+
     game->mlx = mlx_init();
-    printf("hello\n");
+
 
     if (!game->mlx)
         error_exit(game, "MLX initialization failed");
-    printf("hello\n");
-    printf("yes\n");
-    ft_str(game->map);
+
+    //ft_str(game->map);
     game->win = mlx_new_window(game->mlx,
                               ft_strlen(game->map[0]) * TILE_SIZE,
                               ft_len(game->map) * TILE_SIZE,
                               "so_long");
-    printf("yes\n");
+
     if (!game->win)
         error_exit(game, "Window creation failed");
 
     ft_putxpm(game);
     ft_putimage(game);
-    printf("hello\n");
-    printf("%d %d\n", game->player_x, game->player_y);
+
     mlx_hook(game->win, 2, 1L << 0, key_move, game);
 	mlx_hook(game->win, 17, 0, exit_game, game);
-	printf("hello\n");
+
     mlx_loop(game->mlx);
 }
       
@@ -84,15 +82,15 @@ void load_textures(t_game *game)
     int img_TILE_SIZE, img_height;
 
     game->wall_img = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm", &img_TILE_SIZE, &img_height);
-    printf("%p\n", game->wall_img);
+
     game->player_img = mlx_xpm_file_to_image(game->mlx, "textures/player.xpm", &img_TILE_SIZE, &img_height);
-    printf("%p\n", game->player_img);
+
     game->collect_img = mlx_xpm_file_to_image(game->mlx, "textures/collect.xpm", &img_TILE_SIZE, &img_height);
-    printf("%p\n", game->collect_img);
+
     game->exit_img = mlx_xpm_file_to_image(game->mlx, "textures/exit.xpm", &img_TILE_SIZE, &img_height);
-    printf("%p\n", game->exit_img);
+
     game->floor_img = mlx_xpm_file_to_image(game->mlx, "textures/floor.xpm", &img_TILE_SIZE, &img_height);
-    printf("%p\n", game->floor_img);
+
     if (!game->wall_img || !game->player_img || !game->collect_img || 
         !game->exit_img || !game->floor_img) {
         error_exit(game, "Failed to load textures");

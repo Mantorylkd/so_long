@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = main.c  map_params.c ft_putstr_fd.c ft_move.c ft_memset.c get_next_line.c get_next_line_utils.c ft_putimage.c  parcing_map.c  test.c ft_split.c  valid_path.c ft_strnstr.c
+SRCS = main.c ft_printf.c  printf_functions1.c  printf_functions2.c  map_params.c ft_putstr_fd.c ft_move.c ft_memset.c get_next_line.c get_next_line_utils.c ft_putimage.c  parcing_map.c  test.c ft_split.c  valid_path.c ft_strnstr.c
 
 OBJS = $(SRCS:.c=.o)
 CC = cc

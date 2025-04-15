@@ -25,9 +25,10 @@ int ft_is_valid(char *str)
 
     len = ft_strlen(str) - 4;
     if (len <= 0 || str[len - 1] == '/')
-        error_hit("no name or no extention\n");
+        error_hit("no name or no extension\n");
     if (ft_strcmp(str + len, ".ber"))
-        error_hit("no extention\n");
+    // map.ber
+        error_hit("no extension\n");
     len = open(str, O_RDONLY);
     if (len < 0)
         error_hit("no permission or no such a file");
@@ -43,9 +44,6 @@ int main(int argc, char **argv)
         error_hit("./so_long <mapename>.ber");
     if(!parse_map(&game,  ft_is_valid(argv[1])))
         return (1);
-
-    printf("hello\n");
-    printf("hello\n");
     init_graphics(&game);
     return (0);
 }
