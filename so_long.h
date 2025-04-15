@@ -75,8 +75,8 @@ void	ft_putxpm(t_game *game);
 void	ft_putimage(t_game *game);
 void succed_exit(t_game *game) ;
 
-void ft_error(char *str, char *mess, int fd);
-
+void    ft_error(char *str, char *mess, int fd);
+void	ft_error_d(t_game *game);
 void go_down(t_game *game);
 void go_up(t_game *game);
 void go_left(t_game *game);

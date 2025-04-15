@@ -26,7 +26,6 @@ int ft_exit_hanle(t_game *game, int newx, int newy)
     if (game->map[newx][newy] == 'E' && !ft_collect(game->map))
     {
         ft_printf("moves : %d\nYou win 🥂", ++game->move);
-        
         succed_exit(game);
     }
     if (game->exit_x == game->player_x && game->exit_y == game->player_y)

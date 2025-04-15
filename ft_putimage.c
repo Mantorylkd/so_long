@@ -6,13 +6,13 @@
 /*   By: ekhallaf <ekhallaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:27:08 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/04/14 23:10:49 by ekhallaf         ###   ########.fr       */
+/*   Updated: 2025/04/15 16:46:01 by ekhallaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_error_d(t_game *game)
+void	ft_error_d(t_game *game)
 {
 	if (game->collect_img)
 		mlx_destroy_image(game->mlx, game->collect_img);
